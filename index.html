@@ -11,40 +11,20 @@
 
 <script>
     function performAPICall() {
-        // Create a new XMLHttpRequest object
         var xhr = new XMLHttpRequest();
-
-        // Set the HTTP method and API endpoint
-        xhr.open('POST', 'https://users.roblox.com/v1/usernames/users', true);
-
-        // Set request headers
+        xhr.open('POST', 'http://localhost:3000/make-api-request', true);
         xhr.setRequestHeader('accept', 'application/json');
         xhr.setRequestHeader('Content-Type', 'application/json');
-
-        // Set the callback function to handle the API response
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                // Check if the request was successful (status 2xx)
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    // Parse the response JSON
-                    var jsonResponse = JSON.parse(xhr.responseText);
-
-                    // Log the result to the console
-                    console.log('API Response:', jsonResponse);
-                } else {
-                    // Log an error message if the request was not successful
-                    console.error('API Request Failed. Status:', xhr.status);
-                }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var jsonResponse = JSON.parse(xhr.responseText);
+                console.log('API Response:', jsonResponse);
             }
         };
-
-        // Prepare the request payload
         var payload = JSON.stringify({
             "usernames": ["ijshidjhiu912hei9u"],
             "excludeBannedUsers": true
         });
-
-        // Send the request with the payload
         xhr.send(payload);
     }
 </script>
