@@ -1,3 +1,2 @@
 [build]
 command = "npm run build"
-publish = "public"  # Change this to the directory where your build output resides
