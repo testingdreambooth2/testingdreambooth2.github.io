@@ -10,22 +10,29 @@
 <button onclick="performAPICall()">Perform API Call</button>
 
 <script>
-    function performAPICall() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/make-api-request', true);
-        xhr.setRequestHeader('accept', 'application/json');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var jsonResponse = JSON.parse(xhr.responseText);
-                console.log('API Response:', jsonResponse);
+    async function performAPICall() {
+        try {
+            const response = await fetch('/make-api-request', {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "usernames": ["ijshidjhiu912hei9u"],
+                    "excludeBannedUsers": true
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status: ${response.status}`);
             }
-        };
-        var payload = JSON.stringify({
-            "usernames": ["ijshidjhiu912hei9u"],
-            "excludeBannedUsers": true
-        });
-        xhr.send(payload);
+
+            const jsonResponse = await response.json();
+            console.log('API Response:', jsonResponse);
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
     }
 </script>
 
