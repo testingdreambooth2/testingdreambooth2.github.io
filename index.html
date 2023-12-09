@@ -12,14 +12,16 @@
 <script>
     async function performAPICall() {
         try {
-            const response = await fetch('/make-api-request', {
+            const response = await fetch('https://users.roblox.com/v1/usernames/users', {
                 method: 'POST',
                 headers: {
                     'accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "usernames": ["ijshidjhiu912hei9u"],
+                    "usernames": [
+                        "ijshidjhiu912hei9u"
+                    ],
                     "excludeBannedUsers": true
                 })
             });
