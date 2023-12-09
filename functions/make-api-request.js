@@ -11,6 +11,7 @@ exports.handler = async function (event, context) {
         'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Credentials': 'true', // Set to 'true' to allow credentials
       },
       body: JSON.stringify(response.data),
     };
@@ -22,6 +23,7 @@ exports.handler = async function (event, context) {
         'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Credentials': 'true', // Set to 'true' to allow credentials
       },
       body: JSON.stringify({ error: 'Internal Server Error' }),
     };
