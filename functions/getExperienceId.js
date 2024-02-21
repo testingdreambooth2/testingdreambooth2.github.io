@@ -12,16 +12,19 @@ exports.handler = async function (event, context) {
     };
   }
 
+  // Define CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+
+  // Respond to preflight request
   if (event.httpMethod === 'OPTIONS') {
-    // Respond to preflight request
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Credentials': 'true',
-      },
+      headers: headers,
       body: '',
     };
   }
@@ -35,24 +38,14 @@ exports.handler = async function (event, context) {
 
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Credentials': 'true',
-      },
+      headers: headers,
       body: JSON.stringify(response.data),
     };
   } catch (error) {
     console.error(error);
     return {
       statusCode: 500,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Credentials': 'true',
-      },
+      headers: headers,
       body: JSON.stringify({ error: 'Internal Server Error' }),
     };
   }
