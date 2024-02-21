@@ -2,6 +2,16 @@
 const axios = require('axios');
 
 exports.handler = async function (event, context) {
+  // Extracting userId from the query parameters
+  const userId = event.queryStringParameters.userId;
+
+  if (!userId) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Missing userId parameter' }),
+    };
+  }
+
   if (event.httpMethod === 'OPTIONS') {
     // Respond to preflight request
     return {
@@ -17,7 +27,7 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    const response = await axios.get('https://games.roblox.com/v2/users/4576837342/games?accessFilter=2&limit=50&sortOrder=Asc', {
+    const response = await axios.get(`https://games.roblox.com/v2/users/${userId}/games?accessFilter=2&limit=50&sortOrder=Asc`, {
       headers: {
         'accept': 'application/json'
       }
