@@ -34,7 +34,7 @@ exports.handler = async function (event, context) {
 
   try {
     const response = await axios.get(`https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=4576837342`);
-`);
+
 
     // Log the response
     console.log('Response:', response.data);
