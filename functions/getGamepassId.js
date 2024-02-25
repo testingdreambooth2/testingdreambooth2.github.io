@@ -29,8 +29,14 @@ exports.handler = async function (event, context) {
     };
   }
 
+  // Log the userId
+  console.log('UserID:', userId);
+
   try {
     const response = await axios.get(`https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=${userId}`);
+
+    // Log the response
+    console.log('Response:', response.data);
 
     return {
       statusCode: 200,
