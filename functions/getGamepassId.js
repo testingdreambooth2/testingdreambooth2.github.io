@@ -1,4 +1,4 @@
-// functions/getUserInventory.js
+// functions/getGamePasses.js
 const axios = require('axios');
 
 exports.handler = async function (event, context) {
@@ -33,8 +33,7 @@ exports.handler = async function (event, context) {
   console.log('UserID:', userId);
 
   try {
-    const response = await axios.get(`https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=4576837342`);
-
+    const response = await axios.get(`https://games.roblox.com/v1/games/4633889944/game-passes?sortOrder=Asc&limit=10`);
 
     // Log the response
     console.log('Response:', response.data);
