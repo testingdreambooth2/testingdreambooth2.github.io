@@ -33,7 +33,7 @@ exports.handler = async function (event, context) {
   console.log('UserID:', userId);
 
   try {
-    const response = await axios.get(`    const response = await axios.get(`https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=4576837342`);
+    const response = await axios.get(`https://www.roblox.com/users/inventory/list-json?assetTypeId=34&cursor=&itemsPerPage=100&pageNumber=1&userId=4576837342`);
 `);
 
     // Log the response
