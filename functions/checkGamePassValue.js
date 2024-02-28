@@ -46,31 +46,29 @@ exports.handler = async function (event, context) {
     const extractedData = response.data.data;
 
     // Check if any price matches the valueToBeChecked
-    let foundId = false;
-  for (let i = 0; i < extractedData.length; i++) {
-    console.log(`Checking price ${extractedData[i].price}...`);
-    
-    // Convert both values to the same data type before comparison
-    if (Number(extractedData[i].price) === Number(valueToBeChecked)) {
-        foundId = extractedData[i].id;
-      console.log(`Price ${extractedData[i].price} matches ${valueToBeChecked}`);
-        break; // Exit the loop if a match is found
-    }
-}
+    let foundId = null;
+    let priceFound = false;
 
-    if (foundId) {
-      return {
-        statusCode: 200,
-        headers: headers,
-        body: JSON.stringify({ id: foundId }),
-      };
-    } else {
-      return {
-        statusCode: 200,
-        headers: headers,
-        body: JSON.stringify({ message: 'No game pass found with the specified price' }),
-      };
+    for (let i = 0; i < extractedData.length; i++) {
+      console.log(`Checking price ${extractedData[i].price}...`);
+
+      // Convert both values to the same data type before comparison
+      if (Number(extractedData[i].price) === Number(valueToBeChecked)) {
+        foundId = extractedData[i].id;
+        priceFound = true;
+        console.log(`Price ${extractedData[i].price} matches ${valueToBeChecked}`);
+        break; // Exit the loop if a match is found
+      } else {
+        // Update foundId with the last ID in the loop
+        foundId = extractedData[i].id;
+      }
     }
+
+    return {
+      statusCode: 200,
+      headers: headers,
+      body: JSON.stringify({ id: foundId, priceFound: priceFound }),
+    };
   } catch (error) {
     console.error(error);
     return {
