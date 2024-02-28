@@ -36,10 +36,21 @@ exports.handler = async function (event, context) {
       }
     });
 
+    const data = response.data.data;
+    const idValues = [];
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id) {
+        idValues.push(data[i].id);
+      }
+    }
+        console.log('Final Collection of IDs:', idValues);
+
+
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify(response.data),
+      body: JSON.stringify({ idValues: idValues }),
     };
   } catch (error) {
     console.error(error);
