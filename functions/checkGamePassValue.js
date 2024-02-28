@@ -53,6 +53,7 @@ exports.handler = async function (event, context) {
     // Convert both values to the same data type before comparison
     if (Number(extractedData[i].price) === Number(valueToBeChecked)) {
         foundId = extractedData[i].id;
+      console.log('Price ${extractedData[i].price} matches ${valueToBeChecked}');
         break; // Exit the loop if a match is found
     }
 }
