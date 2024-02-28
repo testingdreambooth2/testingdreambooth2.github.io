@@ -43,18 +43,31 @@ exports.handler = async function (event, context) {
     console.log('Response:', response.data);
 
     // Extract id and price from each element in data
-    const extractedData = response.data.data.map(item => ({
-      id: item.id,
-      price: item.price
-    }));
+    const extractedData = response.data.data;
 
-    console.log('Extracted Data:', extractedData);
+    // Check if any price matches the valueToBeChecked
+    let foundId = false;
+    for (let i = 0; i < extractedData.length; i++) {
+      console.log(`Checking price ${extractedData[i].price}...`);
+      if (extractedData[i].price === valueToBeChecked) {
+        foundId = extractedData[i].id;
+        break; // Exit the loop if a match is found
+      }
+    }
 
-    return {
-      statusCode: 200,
-      headers: headers,
-      body: JSON.stringify(extractedData),
-    };
+    if (foundId) {
+      return {
+        statusCode: 200,
+        headers: headers,
+        body: JSON.stringify({ id: foundId }),
+      };
+    } else {
+      return {
+        statusCode: 200,
+        headers: headers,
+        body: JSON.stringify({ message: 'No game pass found with the specified price' }),
+      };
+    }
   } catch (error) {
     console.error(error);
     return {
