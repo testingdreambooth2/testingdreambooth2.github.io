@@ -47,13 +47,15 @@ exports.handler = async function (event, context) {
 
     // Check if any price matches the valueToBeChecked
     let foundId = false;
-    for (let i = 0; i < extractedData.length; i++) {
-      console.log(`Checking price ${extractedData[i].price}...`);
-      if (extractedData[i].price === valueToBeChecked) {
+  for (let i = 0; i < extractedData.length; i++) {
+    console.log(`Checking price ${extractedData[i].price}...`);
+    
+    // Convert both values to the same data type before comparison
+    if (Number(extractedData[i].price) === Number(valueToBeChecked)) {
         foundId = extractedData[i].id;
         break; // Exit the loop if a match is found
-      }
     }
+}
 
     if (foundId) {
       return {
