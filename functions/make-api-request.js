@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
+         'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com, https://rbxhandeltest.myshopify.com',
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Credentials': 'true',
@@ -22,7 +22,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
+        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com, https://rbxhandeltest.myshopify.com',
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Credentials': 'true',
@@ -34,7 +34,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 500,
       headers: {
-        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
+        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com, https://rbxhandeltest.myshopify.com',
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Credentials': 'true',
