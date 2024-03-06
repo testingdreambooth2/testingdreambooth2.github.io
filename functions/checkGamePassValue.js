@@ -15,8 +15,10 @@ exports.handler = async function (event, context) {
   }
 
   // Define CORS headers https://rbxhandeltest.myshopify.com
+  // Original 'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com', 
+  // Test-side 'Access-Control-Allow-Origin': 'https://rbxhandeltest.myshopify.com/', 
   const headers = {
-     'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com', 
+     'Access-Control-Allow-Origin': 'https://rbxhandeltest.myshopify.com/',
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
