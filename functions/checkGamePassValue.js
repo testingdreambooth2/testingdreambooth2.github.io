@@ -39,7 +39,7 @@ exports.handler = async function (event, context) {
 
   try {
     // Call the desired API endpoint
-    const response = await axios.get(`https://games.roblox.com/v1/games/4633889944/game-passes?sortOrder=Asc&limit=10`);
+    const response = await axios.get(`https://games.roblox.com/v1/games/4633889944/game-passes?sortOrder=Asc&limit=50`);
 
     // Log the response
     console.log('Response:', response.data);
