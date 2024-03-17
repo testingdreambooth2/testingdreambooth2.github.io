@@ -2,15 +2,16 @@
 const axios = require('axios');
 
 exports.handler = async function (event, context) {
-  // Extracting userId from the query parameters
+  // Extracting userId and experienceId from the query parameters
   const userId = event.queryStringParameters.userId;
+  const experienceId = event.queryStringParameters.experienceId;
   // Extracting valueToBeChecked from the query parameters
   const valueToBeChecked = event.queryStringParameters.valueToBeChecked;
 
-  if (!userId || !valueToBeChecked) {
+  if (!userId || !valueToBeChecked || !experienceId) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Missing userId or valueToBeChecked parameter' }),
+      body: JSON.stringify({ error: 'Missing userId, experienceId, or valueToBeChecked parameter' }),
     };
   }
 
@@ -33,13 +34,14 @@ exports.handler = async function (event, context) {
     };
   }
 
-  // Log the userId and valueToBeChecked
+  // Log the userId, experienceId, and valueToBeChecked
   console.log('UserID:', userId);
+  console.log('ExperienceID:', experienceId);
   console.log('ValueToBeChecked:', valueToBeChecked);
 
   try {
-    // Call the desired API endpoint
-    const response = await axios.get(`https://games.roblox.com/v1/games/4633889944/game-passes?sortOrder=Asc&limit=50`);
+    // Call the desired API endpoint with the provided experienceId
+    const response = await axios.get(`https://games.roblox.com/v1/games/${experienceId}/game-passes?sortOrder=Asc&limit=50`);
 
     // Log the response
     console.log('Response:', response.data);
