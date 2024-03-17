@@ -12,10 +12,7 @@ exports.handler = async function (event, context) {
     };
   }
 
-  
-  // Define CORS headers https://rbxhandeltest.myshopify.com
-  // Original 'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com', 
-  // Test-side 'Access-Control-Allow-Origin': 'https://rbxhandeltest.myshopify.com', 
+  // Define CORS headers
   const headers = {
     'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
     'Access-Control-Allow-Methods': 'GET',
@@ -39,21 +36,12 @@ exports.handler = async function (event, context) {
       }
     });
 
-    const data = response.data.data;
-    const idValues = [];
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].id) {
-        idValues.push(data[i].id);
-      }
-    }
-        console.log('Final Collection of IDs:', idValues);
-
+    console.log('Response data:', response.data);
 
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ idValues: idValues }),
+      body: JSON.stringify({ responseData: response.data }),
     };
   } catch (error) {
     console.error(error);
