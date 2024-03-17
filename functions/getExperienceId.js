@@ -36,12 +36,21 @@ exports.handler = async function (event, context) {
       }
     });
 
-    console.log('Response data:', response.data);
+    // Log the whole response
+    console.log('Whole response:', response.data);
+
+    // Extracting ID and name from the response data
+    const experienceData = response.data.data.map(item => ({
+      id: item.id,
+      name: item.name
+    }));
+
+    console.log('Extracted experience data:', experienceData);
 
     return {
       statusCode: 200,
       headers: headers,
-      body: JSON.stringify({ responseData: response.data }),
+      body: JSON.stringify({ experienceData: experienceData }),
     };
   } catch (error) {
     console.error(error);
