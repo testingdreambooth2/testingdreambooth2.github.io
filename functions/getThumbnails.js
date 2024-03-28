@@ -20,9 +20,20 @@ exports.handler = async function (event, context) {
   }
 
   try {
+    // Extract universe ID from request query parameters
+    const universeId = event.queryStringParameters.universeId;
+
+    if (!universeId) {
+      return {
+        statusCode: 400,
+        headers: headers,
+        body: JSON.stringify({ error: 'Missing universeId parameter' }),
+      };
+    }
+
     const response = await axios.get('https://thumbnails.roblox.com/v1/games/multiget/thumbnails', {
       params: {
-        universeIds: '4633889944',
+        universeIds: universeId, // Use the extracted universe ID here
         countPerUniverse: 1,
         defaults: true,
         size: '768x432',
