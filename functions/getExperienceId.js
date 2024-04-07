@@ -14,7 +14,7 @@ exports.handler = async function (event, context) {
 
   // Define CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': 'https://5d133b-53.myshopify.com/',
+    'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk',
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
