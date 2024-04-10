@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
   // Test-side 'Access-Control-Allow-Origin': 'https://rbxhandeltest.myshopify.com',
         //        'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk',  
 
-        'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk',  
+        'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',  
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Credentials': 'true',
