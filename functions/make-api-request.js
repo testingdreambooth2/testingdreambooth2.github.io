@@ -22,6 +22,7 @@ exports.handler = async function (event, context) {
   }
 
   try {
+console.log("Request Body:", JSON.parse(event.body));
     const response = await axios.post('https://users.roblox.com/v1/usernames/users', JSON.parse(event.body));
 
     return {
