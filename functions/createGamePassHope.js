@@ -40,10 +40,7 @@ exports.handler = async function (event, context) {
       {
         headers: {
           ...formData.getHeaders(),
-          ':authority': 'apis.roblox.com',
-          ':method': 'POST',
-          ':path': '/game-passes/v1/game-passes/832599030/details',
-          ':scheme': 'https',
+     
           'Accept': '*/*',
           'Accept-Encoding': 'gzip, deflate, br, zstd',
           'Accept-Language': 'da-DK,da;q=0.9,en-US;q=0.8,en;q=0.7',
