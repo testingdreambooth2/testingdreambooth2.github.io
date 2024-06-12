@@ -28,7 +28,7 @@ exports.handler = async function (event, context) {
     const clientSecret = "RBX-rXDQ2SPCVkCiViwYPZ96yekThmaXWDbYJzWqa1EFcYJeRq8EVqlWhTBSP_bKAkKK";
     const redirectUri = 'https://robloxhandeltester.myshopify.com/callback';
 
-    const tokenResponse = await axios.post('https://apis.roblox.com/oauth/token', null, {
+    const tokenResponse = await axios.post('https://apis.roblox.com/oauth/v1/token', null, {
       params: {
         client_id: clientId,
         client_secret: clientSecret,
