@@ -3,7 +3,7 @@ const axios = require('axios');
 
 exports.handler = async function (event, context) {
   const headers = {
-    'Access-Control-Allow-Origin': 'https://your-frontend-domain.com',
+    'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
@@ -21,7 +21,7 @@ exports.handler = async function (event, context) {
     const { code, codeVerifier } = JSON.parse(event.body);
     const clientId = "1698050749629401147";
     const clientSecret = "RBX-rXDQ2SPCVkCiViwYPZ96yekThmaXWDbYJzWqa1EFcYJeRq8EVqlWhTBSP_bKAkKK";
-    const redirectUri = 'https://your-frontend-domain.com/callback';
+    const redirectUri = 'https://robloxhandeltester.myshopify.com/callback';
 
     const tokenResponse = await axios.post('https://apis.roblox.com/oauth/token', null, {
       params: {
