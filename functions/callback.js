@@ -7,6 +7,9 @@ exports.handler = async function (event, context) {
     'Access-Control-Allow-Credentials': 'true',
   };
 
+  // Log the entire received request
+  console.log('Received request:', event);
+
   // Respond to preflight request
   if (event.httpMethod === 'OPTIONS') {
     console.log('Preflight request received');
