@@ -19,6 +19,11 @@ exports.handler = async function (event, context) {
 
   try {
     const { code, codeVerifier } = JSON.parse(event.body);
+    console.log("code ");
+    console.log(code);
+    console.log("codeverifier ");
+    console.log(codeVerifier);
+    
     const clientId = "1698050749629401147";
     const clientSecret = "RBX-rXDQ2SPCVkCiViwYPZ96yekThmaXWDbYJzWqa1EFcYJeRq8EVqlWhTBSP_bKAkKK";
     const redirectUri = 'https://robloxhandeltester.myshopify.com/callback';
