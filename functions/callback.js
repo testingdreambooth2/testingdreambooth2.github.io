@@ -2,7 +2,7 @@ exports.handler = async function (event, context) {
   // Define CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Methods': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
   };
@@ -21,8 +21,17 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    // Extract authorization code from query parameters
-    const code = event.queryStringParameters.code;
+    let code;
+
+    // Extract authorization code from different parts of the request
+    if (event.httpMethod === 'GET') {
+      // Extract from query parameters for GET requests
+      code = event.queryStringParameters && event.queryStringParameters.code;
+    } else if (event.httpMethod === 'POST') {
+      // Extract from request body for POST requests
+      const requestBody = JSON.parse(event.body || '{}');
+      code = requestBody.code;
+    }
 
     if (!code) {
       console.log('Missing authorization code');
