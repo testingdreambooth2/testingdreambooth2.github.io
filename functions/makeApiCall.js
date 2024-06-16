@@ -16,15 +16,18 @@ exports.handler = async function (event, context) {
     };
   }
 
+  const {
+    accessToken,
+    privateServerPriceRobux
+  } = JSON.parse(event.body);
+
+  const bodyData = JSON.stringify({
+    privateServerPriceRobux
+  });
+
+  const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/6047921702';
+
   try {
-    const { accessToken, privateServerPriceRobux } = JSON.parse(event.body);
-    
-    const bodyData = {
-      privateServerPriceRobux,
-    };
-
-    const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/6047921702';
-
     const response = await axios.patch(apiUrl, bodyData, {
       headers: {
         'Content-Type': 'application/json',
