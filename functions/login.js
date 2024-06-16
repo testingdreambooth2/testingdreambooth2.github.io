@@ -1,4 +1,3 @@
-// functions/login.js
 const axios = require('axios');
 
 exports.handler = async function (event, context) {
@@ -18,24 +17,22 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    const { code} = JSON.parse(event.body);
+    const { code } = JSON.parse(event.body);
     console.log("code ");
     console.log(code);
 
-    
     const clientId = "1698050749629401147";
     const clientSecret = "RBX-rXDQ2SPCVkCiViwYPZ96yekThmaXWDbYJzWqa1EFcYJeRq8EVqlWhTBSP_bKAkKK";
     const redirectUri = 'https://robloxhandeltester.myshopify.com/callback';
 
-    const tokenResponse = await axios.post('https://apis.roblox.com/oauth/v1/token', null, {
-      params: {
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: redirectUri,
+    const data = new URLSearchParams();
+    data.append('client_id', clientId);
+    data.append('client_secret', clientSecret);
+    data.append('grant_type', 'authorization_code');
+    data.append('code', code);
+    data.append('redirect_uri', redirectUri);
 
-      },
+    const tokenResponse = await axios.post('https://apis.roblox.com/oauth/v1/token', data, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
