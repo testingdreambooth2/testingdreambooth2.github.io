@@ -1,4 +1,3 @@
-// functions/makeApiCall.js
 const axios = require('axios');
 
 exports.handler = async function (event, context) {
@@ -18,7 +17,11 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    const { accessToken, bodyData } = JSON.parse(event.body);
+    const { accessToken, privateServerPriceRobux } = JSON.parse(event.body);
+    
+    const bodyData = {
+      privateServerPriceRobux,
+    };
 
     const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/6047921702';
 
