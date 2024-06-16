@@ -18,7 +18,7 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    const { code, codeVerifier } = JSON.parse(event.body);
+    const { code} = JSON.parse(event.body);
     console.log("code ");
     console.log(code);
 
