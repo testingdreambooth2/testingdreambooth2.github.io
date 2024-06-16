@@ -21,7 +21,7 @@ exports.handler = async function (event, context) {
 //    'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk', 
 
   const headers = {
-    'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com', 
+    'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk', 
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
