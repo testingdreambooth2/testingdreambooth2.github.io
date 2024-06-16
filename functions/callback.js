@@ -1,7 +1,7 @@
 exports.handler = async function (event, context) {
   // Define CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk',
     'Access-Control-Allow-Methods': '*',
     'Access-Control-Allow-Credentials': 'true',
   };
