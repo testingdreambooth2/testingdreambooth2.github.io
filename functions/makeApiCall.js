@@ -25,6 +25,8 @@ exports.handler = async function (event, context) {
     privateServerPriceRobux
   });
 
+  console.log("privateServerPriceRobux is ", privateServerPriceRobux);
+
   const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/6047921702';
 
   try {
