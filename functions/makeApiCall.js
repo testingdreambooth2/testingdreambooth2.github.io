@@ -18,10 +18,10 @@ exports.handler = async function (event, context) {
 
   const {
     accessToken,
-mv,
+    privateServerPriceRobux,
     experienceId
   } = JSON.parse(event.body);
-var privateServerPriceRobux = 200;
+
   const bodyData = JSON.stringify({
     privateServerPriceRobux
   });
