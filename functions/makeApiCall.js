@@ -18,7 +18,8 @@ exports.handler = async function (event, context) {
 
   const {
     accessToken,
-    privateServerPriceRobux
+    privateServerPriceRobux,
+    experienceId
   } = JSON.parse(event.body);
 
   const bodyData = JSON.stringify({
@@ -26,8 +27,9 @@ exports.handler = async function (event, context) {
   });
 
   console.log("privateServerPriceRobux is ", privateServerPriceRobux);
+  console.log("experienceId is ", experienceId);
 
-  const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/6047921702';
+  const apiUrl = 'https://apis.roblox.com/cloud/v2/universes/' + experienceId;
 
   try {
     const response = await axios.patch(apiUrl, bodyData, {
