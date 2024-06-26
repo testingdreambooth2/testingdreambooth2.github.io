@@ -2,7 +2,7 @@ const axios = require('axios');
 
 exports.handler = async function (event, context) {
   const headers = {
-    'Access-Control-Allow-Origin': 'https://robloxhandeltester.myshopify.com',
+    'Access-Control-Allow-Origin': 'https://xn--kbrbx-vua.dk',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
