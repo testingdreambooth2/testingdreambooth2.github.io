@@ -1,43 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Request Button FOR YOU</title>
-</head>
-<body>
-
-    <button onclick="performAPICall()">Perform API Call</button>
-
-    <script>
-      async function performAPICall() {
-        try {
-          const response = await fetch('/.netlify/functions/make-api-request', {
-            method: 'POST',
-            headers: {
-              'accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              "usernames": [
-                "ijshidjhiu912hei9u"
-              ],
-              "excludeBannedUsers": true
-            })
-          });
-    
-          if (!response.ok) {
-            throw new Error(`API request failed with status: ${response.status}`);
-          }
-    
-          const jsonResponse = await response.json();
-          console.log('API Response:', jsonResponse);
-        } catch (error) {
-          console.error('Error:', error.message);
-        }
-      }
-    </script>
-    
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
