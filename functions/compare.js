@@ -7,7 +7,7 @@ const fs = require('fs');
 const THRESHOLD = 0.5;
 
 // Path to the reference image
-const REFERENCE_IMAGE_PATH = './reference_image.png'; // Ensure this image is available in the deployed environment
+const REFERENCE_IMAGE_PATH = './reference_image_2.png'; // Ensure this image is available in the deployed environment
 
 exports.handler = async (event, context) => {
   // CORS headers
