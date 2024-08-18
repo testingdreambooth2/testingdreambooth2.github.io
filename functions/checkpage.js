@@ -20,6 +20,7 @@ exports.handler = async function(event, context) {
       args: chromium.args,
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
+      timeout: 60000, // Increase timeout for slow connections
     });
 
     const page = await browser.newPage();
