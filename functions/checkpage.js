@@ -1,5 +1,6 @@
 // netlify/functions/checkPage.js
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 
 exports.handler = async function(event, context) {
   const { username } = JSON.parse(event.body);
@@ -16,11 +17,9 @@ exports.handler = async function(event, context) {
   let browser;
   try {
     browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-dev-shm-usage',
-      ],
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
 
     const page = await browser.newPage();
