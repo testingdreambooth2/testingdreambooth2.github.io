@@ -1,7 +1,7 @@
 {
-  "name": "simple-image-compare",
+  "name": "react-app-js",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,15 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.24.0",
-    "express": "^4.17.1",
-    "form-data": "^4.0.0",
-    "pngjs": "^7.0.0",
     "prop-types": "^15.8.1",
-    "puppeteer-core": "^21.0.0",
-    "ssim.js": "^1.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "express": "^4.17.1",
+    "axios": "^0.24.0",
+    "form-data": "^4.0.0",
+    "puppeteer": "^21.0.0",
+    "pngjs": "^7.0.0",
+    "ssim.js": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

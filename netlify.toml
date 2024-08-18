@@ -3,9 +3,6 @@
   publish = "dist"
   functions = "functions"
 
-[build.environment]
-  NODE_VERSION = "18"
-  CHROME_BIN = "/usr/bin/chromium-browser"
 
 [dev]
   command = "vite"

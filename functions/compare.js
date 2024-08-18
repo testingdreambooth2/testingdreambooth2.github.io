@@ -1,20 +1,23 @@
-const puppeteer = require('puppeteer-core'); // Use puppeteer-core for more control over Chromium
-const { PNG } = require('pngjs'); // For PNG image handling
-const ssim = require('ssim.js'); // For SSIM comparison
+const puppeteer = require('puppeteer');
+const { PNG } = require('pngjs');
+const ssim = require('ssim.js');
 const fs = require('fs');
-const path = require('path');
 
-// Define the threshold for similarity score
+// Define the threshold
 const THRESHOLD = 0.5;
-const REFERENCE_IMAGE_PATH = path.resolve(__dirname, '../reference_image_2.png');
+
+// Path to the reference image
+const REFERENCE_IMAGE_PATH = './reference_image_2.png'; // Ensure this image is available in the deployed environment
 
 exports.handler = async (event, context) => {
+  // CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Origin': '*', // Allow all origins
+    'Access-Control-Allow-Methods': 'GET, POST', // Allow these methods
+    'Access-Control-Allow-Headers': 'Content-Type', // Allow these headers
   };
 
+  // Handle preflight requests for CORS
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -23,6 +26,7 @@ exports.handler = async (event, context) => {
     };
   }
 
+  // Extract username from query parameters
   const username = event.queryStringParameters.username;
 
   if (!username) {
@@ -36,26 +40,23 @@ exports.handler = async (event, context) => {
   const url = `https://www.instagram.com/${username}?hl=en`;
 
   try {
-    // Launch Puppeteer and take a screenshot
-    const browser = await puppeteer.launch({
-      executablePath: process.env.CHROME_BIN || '/usr/bin/chromium-browser', // Adjust this path as needed
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    // Launch Puppeteer and navigate to the Instagram page
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2' });
 
+    // Capture a screenshot
     const screenshotBuffer = await page.screenshot();
     await browser.close();
 
-    // Convert screenshot to PNG
-    const screenshotPng = PNG.sync.read(screenshotBuffer);
+    // Load the reference image
+    const referenceImage = PNG.sync.read(fs.readFileSync(REFERENCE_IMAGE_PATH));
 
-    // Load reference image
-    const referenceImageBuffer = fs.readFileSync(REFERENCE_IMAGE_PATH);
-    const referencePng = PNG.sync.read(referenceImageBuffer);
+    // Load the test image from the screenshot
+    const testImage = PNG.sync.read(screenshotBuffer);
 
-    // Ensure both images have the same dimensions
-    if (referencePng.width !== screenshotPng.width || referencePng.height !== screenshotPng.height) {
+    // Ensure both images are the same size
+    if (referenceImage.width !== testImage.width || referenceImage.height !== testImage.height) {
       return {
         statusCode: 400,
         headers,
@@ -63,11 +64,31 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Calculate SSIM
-    const { ssim } = ssim({ data: referencePng.data, width: referencePng.width, height: referencePng.height }, { data: screenshotPng.data, width: screenshotPng.width, height: screenshotPng.height });
+    // Convert images to grayscale
+    function rgbToGray(r, g, b) {
+      return 0.2989 * r + 0.5870 * g + 0.1140 * b;
+    }
 
-    // Check against the threshold
-    const userFound = ssim >= THRESHOLD;
+    function imageToGrayscaleData(png) {
+      const grayData = new Uint8Array(png.width * png.height);
+      for (let i = 0; i < png.data.length; i += 4) {
+        grayData[i / 4] = rgbToGray(
+          png.data[i],
+          png.data[i + 1],
+          png.data[i + 2]
+        );
+      }
+      return grayData;
+    }
+
+    const grayReference = imageToGrayscaleData(referenceImage);
+    const grayTest = imageToGrayscaleData(testImage);
+
+    // Calculate SSIM
+    const { ssim: ssimValue } = ssim(grayReference, grayTest, referenceImage.width, referenceImage.height);
+
+    // Determine the response based on SSIM score and threshold
+    const userFound = ssimValue >= THRESHOLD;
 
     return {
       statusCode: 200,
@@ -82,4 +103,8 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ error: error.message }),
     };
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 57c74b1569babafe3b44c2434ce08d6be4e47c40
