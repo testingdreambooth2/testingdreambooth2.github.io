@@ -1,8 +1,14 @@
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium"]
+
 [build]
   command = "npm run build"
   publish = "dist"
   functions = "functions"
 
+[build.environment]
+  NODE_VERSION = "18"
 
 [dev]
   command = "vite"
